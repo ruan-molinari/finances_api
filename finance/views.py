@@ -40,7 +40,8 @@ class SummaryView(APIView):
 
         balance = total_income - total_expenses
 
-        total_expenses_by_category = [{'category': x[0], 'total_expenses': qs_expenses.filter(category=x[0]).aggregate(Sum('value'))['value__sum'] or 0} for x in Category.choices]
+        CATEGORIES_VALUES = [category[0] for category in Category.choices]
+        total_expenses_by_category = [{'category': category, 'total_expenses': qs_expenses.filter(category=category).aggregate(Sum('value'))['value__sum'] or 0} for category in CATEGORIES_VALUES]
 
         return Response({
             'total_income': total_income,
