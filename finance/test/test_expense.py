@@ -13,7 +13,7 @@ class ExpenseTestCase(APITestCase):
         cls.expense_object = ExpenseFactory.build()
         cls.expense_saved = ExpenseFactory.create()
         cls.client = APIClient()
-        cls.expense_url = reverse('expense-list')
+        cls.expense_url = reverse('expenses-list')
         cls.faker_obj = Faker()
 
     def test_expense_registry(self):
